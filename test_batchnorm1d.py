@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 import zcs_util as zu
 
 '''
@@ -64,5 +65,20 @@ def test():
     zu.print_state_dict(bn)
     print(output)
 
+def test2():
+    a = np.arange(2*3*4, dtype=np.float32).reshape(2, 3, 4)
+    t = torch.from_numpy(a)
+    print(t)
+
+    bn = torch.nn.BatchNorm1d(num_features=3, momentum=0.5)
+    bn.train()
+    zu.print_state_dict(bn)
+
+    bn(t)
+    zu.print_state_dict(bn)
+
+    print(60 / 8)
+
 if __name__ == '__main__':
-    test()
+    # test()
+    test2()
