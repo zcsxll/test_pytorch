@@ -40,7 +40,7 @@ def run_conv(kernel_size=3, stride=1, padding=0):
     inputs = inputs.flatten().reshape(1, -1)
     matrix = kernel2marix(conv.state_dict()['weight'].squeeze().detach().numpy(),
                             input_size + padding * 2, input_size + padding * 2, stride)
-    outputs = np.matmul(inputs, matrix).reshape(outputs.shape)
+    outputs = np.matmul(inputs, matrix).reshape(outputs.squeeze().shape)
     print('test conv   :\n', outputs)
 
 def run_conv_trans(kernel_size=3, stride=1, padding=0, output_padding=0):
