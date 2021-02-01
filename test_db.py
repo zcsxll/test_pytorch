@@ -7,6 +7,11 @@ pcm, samplerate = soundfile.read('./test.wav')
 print(pcm.shape)
 
 ret = librosa.stft(pcm, n_fft=512, hop_length=160)
+'''
+np.abs是求出spec
+平方后，按频段加和，得到的结果的每个数字，和时域上对应的512个点的平方和有线性关系
+由于是平方后的，因此10*log10(energy)就是db值
+'''
 energy = np.sum(np.abs(ret) ** 2, axis = 0)
 # print(energy.shape, energy[40:45])
 
